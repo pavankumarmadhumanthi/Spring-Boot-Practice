@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Registration Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    
+    <div>
+        <a th:href="@{addstudent}">addStudent</a>
+        <a th:href="@{students}">viewStudent</a>
+    </div>
+    <div style="text-align: center;">
+        Total: <p th:text="${total}" style="color:green;"></p>
+        Enrolled: <p th:text="${enrolled}" style="color:green;"></p>
+        Lost: <p th:text="${lost}" style="color:green;"></p>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap functionalities) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

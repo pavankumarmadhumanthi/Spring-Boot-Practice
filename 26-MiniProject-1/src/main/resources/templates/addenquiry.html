@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Form</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	
+    <div class="ribbon">
+        <a th:href="@{addenquiry}">addEnquiry</a>
+        <a th:href="@{enquiries}">viewEnquiries</a>
+        <a th:href="@{dashboard}">Home</a>
+    </div>
+	<p th:text="${msg}" style="color:green;"></p>
+	<div class="container mt-5">
+		<h2 class="mb-4">Student Registration Form</h2>
+		<form th:action="@{saveenquiry}" th:object="${enquiry}" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+			</div>
+
+
+			<div class="form-group">
+				<label for="number">Phone:</label>
+				<input type="number" class="form-control" id="number" name="number" th:field="*{number}" required>
+			</div>
+			<!-- Some form fields... -->
+			<div>
+				<select id="mode" name="mode" th:field="*{mode}">
+					<option value="online">Online</option>
+					<option value="classroom">Classroom</option>
+				</select>
+			</div>
+
+			<div>
+				<select id="course" name="course" th:field="*{course}">
+					<option value="Java">Java</option>
+					<option value="Python">Python</option>
+					<option value="Devops">Devops</option>
+				</select>
+			</div>
+
+			<div>
+				<select id="status" name="status" th:field="*{status}">
+					<option value="New">New</option>
+					<option value="Enrolled">Enrolled</option>
+					<option value="Lost">Lost</option>
+				</select>
+			</div>
+			<!-- ...Other form fields -->
+
+			<button type="submit" class="btn btn-primary">Add Enquiry</button>
+		</form>
+	</div>
+
+	<!-- Bootstrap JS and jQuery (for Bootstrap functionalities) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

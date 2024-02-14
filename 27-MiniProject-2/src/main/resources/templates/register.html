@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap demo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+	<div><h3 th:text="*{msg}"></h3></div>
+	<div class="container my-5">
+		<div class="card-container mx-auto my-2">
+			<div class="row-container row shadow text-secondary">
+				<div class="col form-container ">
+					<div class="text-center my-2">
+						<img src="logo.png" alt="logo">
+						<p>Please Register to your account</p>
+					</div>
+					<form method="post" th:object="${registerform}" th:action="@{/registerformdata}" class="custom-form">
+						<div class="mb-3 form-floating">
+							<input type="text" class="form-control" id="name" placeholder="" name="name"
+								th:field="*{username}" required>
+							<label for="name" class="form-label">User Name</label>
+						</div>
+						<div class="mb-3 form-floating">
+							<input type="email" class="form-control" id="email" placeholder="" name="email"
+								th:field="*{email}" required>
+							<label for="email" class="form-label">Email</label>
+						</div>
+						<div class="mb-3 form-floating">
+							<input type="number" class="form-control" id="phone" placeholder="" name="phone"
+								th:field="*{phone}" required>
+							<label for="phone" class="form-label">Phone number</label>
+						</div>
+						<div class="mb-3 form-floating">
+							<select class="form-select" th:field="*{country}" name="cid" id="countryFeild">
+								<option value="#"> -Select Country- </option>
+								<option th:each="c : ${countries}" th:text="${c.value}" th:value="${c.key}"></option>
+							</select>
+						</div>
+						<div class="mb-3 form-floating">
+							<select class="form-select" th:field="*{state}" name="sid" id="stateField">
+								<option value="#"> -Select State- </option>
+							</select>
+							<label for="state" class="form-label">Select State</label>
+						</div>
+						<div class="mb-3 form-floating">
+							<select class="form-select" th:field="*{city}" name="cityId" id="cityField">
+								<option value="#"> -Select City- </option>
+							</select>
+							<label for="city" class="form-label">Select City</label>
+						</div>
+
+						<div class="my-4 text-center">
+							<button type="submit" class="btn btn-primary">Register</button>
+						</div>
+						<div class="text-center">
+							Do you have an account? <a href="/loginform" class="btn btn-outline-danger">Login here</a>
+						</div>
+					</form>
+				</div>
+				<div
+					class="col text-container text-center my-5 d-flex flex-column justify-content-center align-items-center text-light">
+					<h3>Ashok IT is more than just a Software Training Institute</h3>
+					<p> Student Satisfaction is of utmost importance to us.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#countryFeild").change(function (e) {
+            var selectedCountry = $(this).val();
+
+            $("#stateField, #cityField").empty();
+
+            $.get({
+                url: "/states",
+                data: { cid: selectedCountry },
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $("#stateField").append($('<option>', {
+                            value: key,
+                            text: value
+                        }));
+                    });
+                },
+            });
+        });
+
+        // Move this block inside the $(document).ready block
+        $("#stateField").change(function (e) {
+            var selectedState = $(this).val();
+
+            $("#cityField").empty();
+
+            $.get({
+                url: "/cities",
+                data: { sid: selectedState },
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $("#cityField").append($('<option>', {
+                            value: key,
+                            text: value
+                        }));
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

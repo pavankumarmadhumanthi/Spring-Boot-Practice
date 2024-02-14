@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Form</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<p th:text="${msg}" style="color:green;"></p>
+	<div class="container mt-5">
+		<h2 class="mb-4">Student Registration</h2>
+		<form th:action="@{register}" th:object="${student}" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="email" class="form-control" id="email" name="email" th:field="*{mail}" required>
+			</div>
+
+			<div class="form-group">
+				<label>Gender:</label><br>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="male" name="gender" value="male"
+						th:field="*{gender}" required>
+					<label class="form-check-label" for="male">Male</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="female" name="gender" value="female"
+						th:field="*{gender}" required>
+					<label class="form-check-label" for="female">Female</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="course">Course:</label>
+				<select class="form-control" id="course" name="course" th:field="*{course}" required>
+					<option th:each="course : ${courses}" th:value="${course.courseName}" th:text="${course.courseName}">
+					</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Timings:</label><br>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" id="morning" name="timings[]" value="morning"
+						th:field="*{timings}">
+					<label class="form-check-label" for="morning">Morning</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" id="afternoon" name="timings[]" value="afternoon"
+						th:field="*{timings}">
+					<label class="form-check-label" for="afternoon">Afternoon</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" id="evening" name="timings[]" value="evening"
+						th:field="*{timings}">
+					<label class="form-check-label" for="evening">Evening</label>
+				</div>
+				
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<!-- Bootstrap JS and jQuery (for Bootstrap functionalities) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

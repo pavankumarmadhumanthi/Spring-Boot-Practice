@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Additional CSS styles if needed */
+        .ribbon {
+            /* Add styles for the ribbon */
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .left-side {
+            /* Add styles for the left side */
+            float: left;
+            width: 20%; /* Adjust as needed */
+            padding: 20px;
+        }
+
+        .right-side {
+            /* Add styles for the right side */
+            float: right;
+            width: 70%; /* Adjust as needed */
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ribbon">
+        <a th:href="@{addenquiry}">addEnquiry</a>
+        <a th:href="@{enquiries}">viewEnquiries</a>
+        <a th:href="@{dashboard}">Home</a>
+    </div>
+
+    <div class="left-side">
+        <div>
+            <!-- Left side content -->
+            <!-- Add your content here -->
+            <p>Left Side Content</p>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div>
+            <!-- Right side content -->
+            <!-- Add your content here -->
+            <p>Total: <span style="color: green;" th:text="${dashboard.total}"></span></p>
+            <p>Enrolled: <span style="color: green;" th:text="${dashboard.enrolled}"></span></p>
+            <p>Lost: <span style="color: green;" th:text="${dashboard.lost}"></span></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap functionalities) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
