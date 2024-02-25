@@ -29,9 +29,6 @@ public class MyAppConfigurations {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
-	
-	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable()

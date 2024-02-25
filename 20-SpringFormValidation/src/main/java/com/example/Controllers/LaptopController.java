@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 @Controller
 public class LaptopController {
 	@Autowired
-	private LaptopServiceImp service;
+	private LaptopServiceImp service; 
 	@GetMapping("/index")
 	public String view(Model model) {
 		model.addAttribute("laptop",new Laptop());

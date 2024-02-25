@@ -1,4 +1,4 @@
-package com.example.binding;
+package com.example.services;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,25 +8,20 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
-import com.example.entites.Client;
+import com.example.entites.Student;
 
-import lombok.Data;
-
-@Component
-public class UserData implements UserDetails {
-
-	private String clientName;
+public class UserInfo implements UserDetails{
+	
+	private String username;
 	private String password;
 	private List<GrantedAuthority> authorities;
 	
-	public UserData(Client client) {
-		clientName=client.getClientName();
-		password=client.getPassword();
-		authorities=Arrays.stream(client.getRoles().split(","))
-				.map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+	public UserInfo(Student student) {
+		this.username=student.getStudentEmail();
+		this.password=student.getPassword();
+		this.authorities=Arrays.stream(student.getRoles().split(","))
+				.map(e->new SimpleGrantedAuthority(e)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -44,7 +39,7 @@ public class UserData implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return clientName;
+		return username;
 	}
 
 	@Override

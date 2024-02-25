@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.example.entites.Client;
 @Repository
 public interface ClientRepo extends JpaRepository<Client, Integer>{
-	public Optional<Client> findByClientname(String name);
+	public Client findByClientName(String name);
 
 }
