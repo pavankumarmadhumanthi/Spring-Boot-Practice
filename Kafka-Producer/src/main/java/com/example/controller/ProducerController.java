@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entities.Student;
-import com.example.services.KafkaProducer;
+
+import com.example.services.KafkaProducerService;
 
 @RestController
 public class ProducerController {
 	@Autowired
-	private KafkaProducer service;
+	private KafkaProducerService service;
 	
 	@PostMapping("/register")
 	public void getStudent(@RequestBody Student student) {

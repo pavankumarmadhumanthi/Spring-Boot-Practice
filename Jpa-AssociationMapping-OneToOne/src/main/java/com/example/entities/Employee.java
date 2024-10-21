@@ -23,7 +23,6 @@ public class Employee {
 	
 	private Integer empId;
 	private String empName;
-	
 	@OneToOne(mappedBy = "employee",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Address address;
 	

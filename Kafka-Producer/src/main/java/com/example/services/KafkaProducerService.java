@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.entities.Student;
 @Service
-public class KafkaProducer {
+public class KafkaProducerService{
 	@Autowired
 	private KafkaTemplate<String,Student> template;
 	
 	public String sendMessageToTopic(Student student) {
 		try {
-			template.send("ashokit_topic",student);
+			template.send("test1",student);
 			return "send message to topic";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
